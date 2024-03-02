@@ -2,6 +2,85 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/blocks/curvy/components/bottomCurveSettings.js":
+/*!************************************************************!*\
+  !*** ./src/blocks/curvy/components/bottomCurveSettings.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BottomCurveSettings: () => (/* binding */ BottomCurveSettings)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../block.json */ "./src/blocks/curvy/block.json");
+
+
+
+
+
+const BottomCurveSettings = props => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.HorizontalRule, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    min: 100,
+    max: 200,
+    value: props.attributes.bottomWidth || 100,
+    onChange: newValue => {
+      props.setAttributes({
+        bottomWidth: parseInt(newValue)
+      });
+    },
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    min: 0,
+    max: 200,
+    value: props.attributes.bottomHeight,
+    onChange: newValue => {
+      props.setAttributes({
+        bottomHeight: parseInt(newValue)
+      });
+    },
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Height', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.HorizontalRule, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'flex'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    onChange: isChecked => {
+      props.setAttributes({
+        bottomFlipX: isChecked
+      });
+    },
+    checked: props.attributes.bottomFlipX
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Flip Horizontally', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'flex'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    onChange: isChecked => {
+      props.setAttributes({
+        bottomFlipY: isChecked
+      });
+    },
+    checked: props.attributes.bottomFlipY
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Flip Vertically', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.HorizontalRule, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Curve color', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
+    value: props.attributes.bottomColor,
+    onChange: newValue => {
+      props.setAttributes({
+        bottomColor: newValue
+      });
+    }
+  })));
+};
+
+/***/ }),
+
 /***/ "./src/blocks/curvy/components/curve.js":
 /*!**********************************************!*\
   !*** ./src/blocks/curvy/components/curve.js ***!
@@ -21,12 +100,13 @@ const Curve = props => {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
       position: "absolute",
-      top: 0,
+      top: !props.isBottom ? 0 : 'initial',
+      bottom: props.isBottom ? 0 : 'initial',
       left: 0,
       width: '100%',
       overflow: 'hidden',
       height: props.height,
-      transform: `scaleX(${props.flipX ? -1 : 1}) rotate(${props.flipY ? '180deg' : 0})`
+      transform: `scaleX(${props.flipX ? -1 : 1}) rotate(${props.flipY ? '180deg' : 0}) scaleY(${props.isBottom ? -1 : 1})`
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     preserveAspectRatio: "none",
@@ -43,6 +123,93 @@ const Curve = props => {
       fill: props.color || "white"
     },
     d: props.flipY ? invertedPath : normalPath
+  })));
+};
+
+/***/ }),
+
+/***/ "./src/blocks/curvy/components/topCurveSettings.js":
+/*!*********************************************************!*\
+  !*** ./src/blocks/curvy/components/topCurveSettings.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TopCurveSettings: () => (/* binding */ TopCurveSettings)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../block.json */ "./src/blocks/curvy/block.json");
+
+
+
+
+
+const TopCurveSettings = props => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.HorizontalRule, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    min: 100,
+    max: 200,
+    value: props.attributes.topWidth || 100,
+    onChange: newValue => {
+      props.setAttributes({
+        topWidth: parseInt(newValue)
+      });
+    },
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    min: 0,
+    max: 200,
+    value: props.attributes.topHeight,
+    onChange: newValue => {
+      props.setAttributes({
+        topHeight: parseInt(newValue)
+      });
+    },
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Height', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.HorizontalRule, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'flex'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    onChange: isChecked => {
+      props.setAttributes({
+        topFlipX: isChecked
+      });
+    },
+    checked: props.attributes.topFlipX
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Flip Horizontally', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'flex'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    onChange: isChecked => {
+      props.setAttributes({
+        topFlipY: isChecked
+      });
+    },
+    checked: props.attributes.topFlipY
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Flip Vertically', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.HorizontalRule, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Curve color', _block_json__WEBPACK_IMPORTED_MODULE_4__.textdomain)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.ColorPalette
+  // disableCustomColors
+  // colors={[
+  // 	{
+  // 		name: "Yellow",
+  // 		color: "#FFFF00"
+  // 	}
+  // ]}
+  , {
+    value: props.attributes.topColor,
+    onChange: newValue => {
+      props.setAttributes({
+        topColor: newValue
+      });
+    }
   })));
 };
 
@@ -69,6 +236,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/curvy/editor.scss");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block.json */ "./src/blocks/curvy/block.json");
 /* harmony import */ var _components_curve__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/curve */ "./src/blocks/curvy/components/curve.js");
+/* harmony import */ var _components_topCurveSettings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/topCurveSettings */ "./src/blocks/curvy/components/topCurveSettings.js");
+/* harmony import */ var _components_bottomCurveSettings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/bottomCurveSettings */ "./src/blocks/curvy/components/bottomCurveSettings.js");
 
 /**
  * Retrieves the translation of text.
@@ -103,6 +272,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
+
 function Edit(props) {
   const {
     className,
@@ -117,6 +288,13 @@ function Edit(props) {
     flipY: props.attributes.topFlipY,
     height: props.attributes.topHeight,
     width: props.attributes.topWidth
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, null), props.attributes.enableBottomCurve && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_curve__WEBPACK_IMPORTED_MODULE_6__.Curve, {
+    isBottom: true,
+    color: props.attributes.bottomColor,
+    flipX: props.attributes.bottomFlipX,
+    flipY: props.attributes.bottomFlipY,
+    height: props.attributes.bottomHeight,
+    width: props.attributes.bottomWidth
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Top curve', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -130,66 +308,26 @@ function Edit(props) {
       });
     },
     checked: props.attributes.enableTopCurve
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable top curve', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain))), props.attributes.enableTopCurve && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.HorizontalRule, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-    min: 100,
-    max: 200,
-    value: props.attributes.topWidth || 100,
-    onChange: newValue => {
-      props.setAttributes({
-        topWidth: parseInt(newValue)
-      });
-    },
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain)
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-    min: 0,
-    max: 200,
-    value: props.attributes.topHeight,
-    onChange: newValue => {
-      props.setAttributes({
-        topHeight: parseInt(newValue)
-      });
-    },
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Height', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain)
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.HorizontalRule, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    style: {
-      display: 'flex'
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    onChange: isChecked => {
-      props.setAttributes({
-        topFlipX: isChecked
-      });
-    },
-    checked: props.attributes.topFlipX
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Flip Horizontally', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    style: {
-      display: 'flex'
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    onChange: isChecked => {
-      props.setAttributes({
-        topFlipY: isChecked
-      });
-    },
-    checked: props.attributes.topFlipY
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Flip Vertically', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.HorizontalRule, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Curve color', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.ColorPalette
-  // disableCustomColors
-  // colors={[
-  // 	{
-  // 		name: "Yellow",
-  // 		color: "#FFFF00"
-  // 	}
-  // ]}
-  , {
-    value: props.attributes.topColor,
-    onChange: newValue => {
-      props.setAttributes({
-        topColor: newValue
-      });
-    }
-  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable top curve', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain))), props.attributes.enableTopCurve && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_topCurveSettings__WEBPACK_IMPORTED_MODULE_7__.TopCurveSettings, {
+    attributes: props.attributes,
+    setAttributes: props.setAttributes
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bottom curve', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain)
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Disable bottom curve"))));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: 'flex'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    onChange: isChecked => {
+      props.setAttributes({
+        enableBottomCurve: isChecked
+      });
+    },
+    checked: props.attributes.enableBottomCurve
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable top curve', _block_json__WEBPACK_IMPORTED_MODULE_5__.textdomain))), props.attributes.enableBottomCurve && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_bottomCurveSettings__WEBPACK_IMPORTED_MODULE_8__.BottomCurveSettings, {
+    attributes: props.attributes,
+    setAttributes: props.setAttributes
+  }))));
 }
 
 /***/ }),
@@ -258,11 +396,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ save)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
@@ -281,9 +416,11 @@ __webpack_require__.r(__webpack_exports__);
  * @return {Element} Element to render.
  */
 function save() {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  }, 'Blockylicious – hello from the saved content!');
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save();
+  const {
+    children
+  } = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useInnerBlocksProps.save(blockProps);
+  return children;
 }
 
 /***/ }),
@@ -368,7 +505,7 @@ module.exports = window["wp"]["i18n"];
   \*************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/curvy","version":"0.1.0","title":"Curvy","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"color":{"background":true,"link":true,"text":true},"spacing":{"padding":true}},"attributes":{"style":{"type":"object","default":{"color":{"background":"#ec4899"},"spacing":{"padding":{"top":"80px","bottom":"80px","left":"50px","right":"50px"}}}},"enableTopCurve":{"type":"boolean","default":true},"topFlipX":{"type":"boolean","default":false},"topFlipY":{"type":"boolean","default":false},"topWidth":{"type":"number","default":100},"topHeight":{"type":"number","default":100},"topColor":{"type":"string","default":"#000000"}},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/curvy","version":"0.1.0","title":"Curvy","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"color":{"background":true,"link":true,"text":true},"spacing":{"padding":true}},"attributes":{"style":{"type":"object","default":{"color":{"background":"#ec4899"},"spacing":{"padding":{"top":"80px","bottom":"80px","left":"50px","right":"50px"}}}},"enableTopCurve":{"type":"boolean","default":true},"topFlipX":{"type":"boolean","default":false},"topFlipY":{"type":"boolean","default":false},"topWidth":{"type":"number","default":100},"topHeight":{"type":"number","default":100},"topColor":{"type":"string","default":"#000000"},"enableBottomCurve":{"type":"boolean","default":true},"bottomFlipX":{"type":"boolean","default":false},"bottomFlipY":{"type":"boolean","default":false},"bottomWidth":{"type":"number","default":100},"bottomHeight":{"type":"number","default":100},"bottomColor":{"type":"string","default":"#000000"}},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
 
 /***/ })
 

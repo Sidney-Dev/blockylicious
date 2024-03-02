@@ -59,11 +59,36 @@
 		"topColor": {
 			"type": "string",
 			"default": "#000000"
+		},
+		"enableBottomCurve": {
+			"type": "boolean",
+			"default": true
+		},
+		"bottomFlipX": {
+			"type": "boolean",
+			"default": false
+		},
+		"bottomFlipY": {
+			"type": "boolean",
+			"default": false
+		},
+		"bottomWidth": {
+			"type": "number",
+			"default": 100
+		},
+		"bottomHeight": {
+			"type": "number",
+			"default": 100
+		},
+		"bottomColor": {
+			"type": "string",
+			"default": "#000000"
 		}
 	},
 	"textdomain": "blockylicious",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
 }
