@@ -9,7 +9,57 @@
   "description": "Example block scaffolded with Create Block tool.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "color": {
+      "background": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true
+    }
+  },
+  "attributes": {
+    "style": {
+      "type": "object",
+      "default": {
+        "color": {
+          "background": "#ec4899"
+        },
+        "spacing": {
+          "padding": {
+            "top": "80px",
+            "bottom": "80px",
+            "left": "50px",
+            "right": "50px"
+          }
+        }
+      }
+    },
+    "enableTopCurve": {
+      "type": "boolean",
+      "default": true
+    },
+    "topFlipX": {
+      "type": "boolean",
+      "default": false
+    },
+    "topFlipY": {
+      "type": "boolean",
+      "default": false
+    },
+    "topWidth": {
+      "type": "number",
+      "default": 100
+    },
+    "topHeight": {
+      "type": "number",
+      "default": 100
+    },
+    "topColor": {
+      "type": "string",
+      "default": "#000000"
+    }
   },
   "textdomain": "blockylicious",
   "editorScript": "file:./index.js",
