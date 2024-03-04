@@ -36,29 +36,4 @@ registerBlockType( metadata.name, {
 	 * @see ./save.js
 	 */
 	save,
-	icon: <div>Hello curvy block</div>, // this could return anything
-	transforms: {
-		from: [
-			{
-				type: "block",
-				blocks: ["core/paragraph"],
-				transform: (attributes) => {
-					//console.log({ data });
-					return createBlock("blockylicious/curvy", {}, [
-						createBlock("core/paragraph", attributes),
-					]);
-				},
-			},
-			{
-				type: "block",
-				blocks: ["core/heading"],
-				transform: (attributes) => {
-					//console.log({ data });
-					return createBlock("blockylicious/curvy", {}, [
-						createBlock("core/heading", attributes),
-					]);
-				},
-			},
-		],
-	},
 } );

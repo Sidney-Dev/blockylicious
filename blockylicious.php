@@ -24,7 +24,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
+
+ // creates a new Gutenberg block category. 
+ function create_custom_block_category($categories) {
+	
+	array_unshift($categories, [
+		'slug' => 'blockylicious',
+		'title' => 'Blockylicious'
+	]);
+
+	return $categories;
+ }
+
 function blockylicious_blockylicious_block_init() {
+
+	add_filter('block_categories_all', 'create_custom_block_category');
 	register_block_type( __DIR__ . '/build/blocks/curvy' );
+	register_block_type( __DIR__ . '/build/blocks/clickyGroup' );
+	register_block_type( __DIR__ . '/build/blocks/clickyButton' );
 }
 add_action( 'init', 'blockylicious_blockylicious_block_init' );

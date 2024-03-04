@@ -339,12 +339,15 @@ function Edit(props) {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/curvy/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/curvy/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/curvy/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/curvy/block.json");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/curvy/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/blocks/curvy/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./save */ "./src/blocks/curvy/save.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block.json */ "./src/blocks/curvy/block.json");
+
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -373,15 +376,34 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
   /**
    * @see ./edit.js
    */
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   /**
    * @see ./save.js
    */
-  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
+  save: _save__WEBPACK_IMPORTED_MODULE_4__["default"],
+  icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Hello curvy block"),
+  // this could return anything
+  transforms: {
+    from: [{
+      type: "block",
+      blocks: ["core/paragraph"],
+      transform: attributes => {
+        //console.log({ data });
+        return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.createBlock)("blockylicious/curvy", {}, [(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.createBlock)("core/paragraph", attributes)]);
+      }
+    }, {
+      type: "block",
+      blocks: ["core/heading"],
+      transform: attributes => {
+        //console.log({ data });
+        return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.createBlock)("blockylicious/curvy", {}, [(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.createBlock)("core/heading", attributes)]);
+      }
+    }]
+  }
 });
 
 /***/ }),
@@ -505,7 +527,7 @@ module.exports = window["wp"]["i18n"];
   \*************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/curvy","version":"0.1.0","title":"Curvy","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"color":{"background":true,"link":true,"text":true},"spacing":{"padding":true}},"attributes":{"style":{"type":"object","default":{"color":{"background":"#ec4899"},"spacing":{"padding":{"top":"80px","bottom":"80px","left":"50px","right":"50px"}}}},"enableTopCurve":{"type":"boolean","default":true},"topFlipX":{"type":"boolean","default":false},"topFlipY":{"type":"boolean","default":false},"topWidth":{"type":"number","default":100},"topHeight":{"type":"number","default":100},"topColor":{"type":"string","default":"#000000"},"enableBottomCurve":{"type":"boolean","default":true},"bottomFlipX":{"type":"boolean","default":false},"bottomFlipY":{"type":"boolean","default":false},"bottomWidth":{"type":"number","default":100},"bottomHeight":{"type":"number","default":100},"bottomColor":{"type":"string","default":"#000000"}},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/curvy","version":"0.1.0","title":"Curvy","category":"blockylicious","icon":"smiley","description":"Example block scaffolded with Create Block tool.","supports":{"html":false,"color":{"background":true,"link":true,"text":true},"spacing":{"padding":true}},"variations":[{"name":"top-only","title":"Curvy - top only","attributes":{"enableBottomCurve":false,"enableTopCurve":true}},{"name":"bottom-only","title":"Curvy - bottom only","attributes":{"enableBottomCurve":true,"enableTopCurve":false}}],"example":{"innerBlocks":[{"name":"core/heading","attributes":{"content":"Lorem ipsum"}},{"name":"core/paragraph","attributes":{"content":"This is an example curvy block"}}]},"attributes":{"style":{"type":"object","default":{"color":{"background":"#ec4899"},"spacing":{"padding":{"top":"80px","bottom":"80px","left":"50px","right":"50px"}}}},"enableTopCurve":{"type":"boolean","default":true},"topFlipX":{"type":"boolean","default":false},"topFlipY":{"type":"boolean","default":false},"topWidth":{"type":"number","default":100},"topHeight":{"type":"number","default":100},"topColor":{"type":"string","default":"#000000"},"enableBottomCurve":{"type":"boolean","default":true},"bottomFlipX":{"type":"boolean","default":false},"bottomFlipY":{"type":"boolean","default":false},"bottomWidth":{"type":"number","default":100},"bottomHeight":{"type":"number","default":100},"bottomColor":{"type":"string","default":"#000000"}},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
 
 /***/ })
 

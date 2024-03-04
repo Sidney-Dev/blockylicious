@@ -1,0 +1,52 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "blockylicious/clicky-button",
+	"version": "0.1.0",
+	"title": "Clicky button",
+	"category": "blockylicious",
+	"icon": "smiley",
+	"description": "A button that belongs to clicky button group",
+	"supports": {
+		"html": false,
+		"color": {
+			"background": true,
+			"link": true,
+			"gradients": true,
+			"enableContrastChecker": true,
+			"text": true
+		},
+		"spacing": {
+			"padding": true
+		}
+	},
+	"attributes": {
+		"labelText": {
+			"type": "string",
+			"default": ""
+		},
+		"style": {
+			"type": "object",
+			"default": {
+				"color": {
+					"background": "#000000",
+					"text": "#ffffff"
+				},
+				"spacing": {
+					"padding": {
+						"top": "15px",
+						"bottom": "15px",
+						"left": "15px",
+						"right": "15px"
+					}
+				}
+			}
+		}
+	},
+	"textdomain": "blockylicious",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"parent": ["blockylicious/clicky-group"]
+}
