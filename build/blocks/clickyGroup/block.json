@@ -8,7 +8,20 @@
   "icon": "smiley",
   "description": "A group of clicky buttons that link to a particular post rather than hard-coding the destination URL.",
   "supports": {
-    "html": false
+    "html": false,
+    "spacing": {
+      "blockGap": true
+    }
+  },
+  "attributes": {
+    "justifyContent": {
+      "type": "string",
+      "enum": [
+        "center",
+        "right",
+        "left"
+      ]
+    }
   },
   "textdomain": "blockylicious",
   "editorScript": "file:./index.js",

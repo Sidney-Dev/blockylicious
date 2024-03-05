@@ -25,6 +25,10 @@
       "type": "string",
       "default": ""
     },
+    "postType": {
+      "type": "string",
+      "default": ""
+    },
     "style": {
       "type": "object",
       "default": {

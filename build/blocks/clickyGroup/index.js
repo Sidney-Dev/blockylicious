@@ -16,19 +16,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_parseValue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../../utils/parseValue */ "./utils/parseValue.js");
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+function Edit(props) {
+  const blockGap = (0,_utils_parseValue__WEBPACK_IMPORTED_MODULE_2__.parseValue)(props.attributes.style?.spacing?.blockGap || "");
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    style: {
+      gap: blockGap,
+      justifyContent: props.attributes.justifyContent
+    }
+  });
 
   // Option 2: alternative option to save inner block inside parent block 
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)(blockProps, {
     template: [["blockylicious/clicky-button", {}]],
     allowedBlocks: ["blockylicious/clicky-button"]
   });
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.JustifyContentControl, {
+    value: props.attributes.justifyContent,
+    allowedControls: ["left", "right", "center"],
+    onChange: newValue => {
+      props.setAttributes({
+        justifyContent: newValue
+      });
+    }
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...innerBlocksProps
-  });
+  }));
 
   // Option 1:
   // return (
@@ -140,6 +156,26 @@ function save() {
 
 /***/ }),
 
+/***/ "./utils/parseValue.js":
+/*!*****************************!*\
+  !*** ./utils/parseValue.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   parseValue: () => (/* binding */ parseValue)
+/* harmony export */ });
+const parseValue = value => {
+  if (value.indexOf("var:") === 0) {
+    const varValue = value.split(":")[1].split("|").join("--");
+    return `var(--wp--${varValue})`;
+  }
+  return value;
+};
+
+/***/ }),
+
 /***/ "./src/blocks/clickyGroup/style.scss":
 /*!*******************************************!*\
   !*** ./src/blocks/clickyGroup/style.scss ***!
@@ -188,7 +224,7 @@ module.exports = window["wp"]["blocks"];
   \*******************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/clicky-group","version":"0.1.0","title":"Clicky group","category":"blockylicious","icon":"smiley","description":"A group of clicky buttons that link to a particular post rather than hard-coding the destination URL.","supports":{"html":false},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/clicky-group","version":"0.1.0","title":"Clicky group","category":"blockylicious","icon":"smiley","description":"A group of clicky buttons that link to a particular post rather than hard-coding the destination URL.","supports":{"html":false,"spacing":{"blockGap":true}},"attributes":{"justifyContent":{"type":"string","enum":["center","right","left"]}},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ })
 
