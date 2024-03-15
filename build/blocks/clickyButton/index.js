@@ -31,6 +31,15 @@ function Edit(props) {
     });
     return data?.filter(item => item.visibility.show_in_nav_menus && item.visibility.show_ui);
   });
+  const posts = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
+    const data = select("core").getEntityRecords("postType", props.attributes.postType, {
+      per_page: -1
+    });
+    return data;
+  }, [props.attributes.postType]);
+  console.log({
+    posts
+  });
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: "Destination"
@@ -48,6 +57,21 @@ function Edit(props) {
     }, ...(postTypes || []).map(postType => ({
       label: postType.labels.singular_name,
       value: postType.slug
+    }))]
+  }), !!props.attributes.postType && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: `Linked ${props.attributes.postType}`,
+    value: props.attributes.linkedPost,
+    onChange: newValue => {
+      props.setAttributes({
+        linkedPost: newValue ? parseInt(newValue) : null
+      });
+    },
+    options: [{
+      label: `Select a ${props.attributes.linkedPost} to link to`,
+      value: ""
+    }, ...(posts || []).map(post => ({
+      label: post.title.rendered,
+      value: post.id
     }))]
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
@@ -152,11 +176,9 @@ __webpack_require__.r(__webpack_exports__);
  * @return {Element} Element to render.
  */
 function save() {
-  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save();
-  const {
-    children
-  } = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useInnerBlocksProps.save(blockProps);
-  return children;
+  // const blockProps = useBlockProps.save()
+  // const { children } = useInnerBlocksProps.save(blockProps)
+  return null;
 }
 
 /***/ }),
@@ -229,7 +251,7 @@ module.exports = window["wp"]["data"];
   \********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/clicky-button","version":"0.1.0","title":"Clicky button","category":"blockylicious","icon":"smiley","description":"A button that belongs to clicky button group","supports":{"html":false,"color":{"background":true,"link":true,"gradients":true,"enableContrastChecker":true,"text":true},"spacing":{"padding":true}},"attributes":{"labelText":{"type":"string","default":""},"postType":{"type":"string","default":""},"style":{"type":"object","default":{"color":{"background":"#000000","text":"#ffffff"},"spacing":{"padding":{"top":"15px","bottom":"15px","left":"15px","right":"15px"}}}}},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","parent":["blockylicious/clicky-group"]}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/clicky-button","version":"0.1.0","title":"Clicky button","category":"blockylicious","icon":"smiley","description":"A button that belongs to clicky button group","supports":{"html":false,"color":{"background":true,"link":true,"gradients":true,"enableContrastChecker":true,"text":true},"spacing":{"padding":true}},"attributes":{"labelText":{"type":"string","default":""},"postType":{"type":"string","default":""},"linkedPost":{"type":"number"},"style":{"type":"object","default":{"color":{"background":"#000000","text":"#ffffff"},"spacing":{"padding":{"top":"15px","bottom":"15px","left":"15px","right":"15px"}}}}},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","parent":["blockylicious/clicky-group"]}');
 
 /***/ })
 
